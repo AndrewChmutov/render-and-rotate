@@ -31,3 +31,19 @@ const std::vector<vec3>& Shape3D::getVertices() const {
 const std::vector<std::pair<int, int>>& Shape3D::getConnections() const {
     return connections;
 }
+
+
+void Shape3D::rotate(double x_radian, double y_radian, double z_radian) 
+{
+    // To calculate rotation around centroid instead of origin (0, 0, 0)
+    // We have to "place" figure into origin
+    for (vec3& vertex : vertices) {
+        vertex.x -= centroid.x;
+        vertex.y -= centroid.y;
+        vertex.z -= centroid.z;
+        rotateVector(vertex, x_radian, y_radian, z_radian);
+        vertex.x += centroid.x;
+        vertex.y += centroid.y;
+        vertex.z += centroid.z;
+    }
+}

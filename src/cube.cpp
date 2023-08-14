@@ -34,19 +34,3 @@ Cube::Cube(double x, double y, double z, double size) {
     connections.push_back(std::make_pair(1, 5));
     connections.push_back(std::make_pair(2, 6));
 }
-
-
-void Cube::rotate(double x_radian, double y_radian, double z_radian) 
-{
-    // To calculate rotation around centroid instead of origin (0, 0, 0)
-    // We have to "place" figure into origin
-    for (vec3& vertex : vertices) {
-        vertex.x -= centroid.x;
-        vertex.y -= centroid.y;
-        vertex.z -= centroid.z;
-        rotateVector(vertex, x_radian, y_radian, z_radian);
-        vertex.x += centroid.x;
-        vertex.y += centroid.y;
-        vertex.z += centroid.z;
-    }
-}
