@@ -32,14 +32,30 @@ SDL_EventType Screen::input() {
 }
 
 
+void Screen::putPixel(double x, double y) {
+    pixels.push_back(vec2{x, y});
+}
+
+
 void Screen::show() {
     // Output
     // Black background
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
 
+    // Color and show pixels
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    for (auto& el : pixels) {
+        SDL_RenderDrawPointF(renderer, el.x, el.y);
+    }
+
     // Show
     SDL_RenderPresent(renderer);
+}
+
+
+void Screen::clear() {
+    pixels.clear();
 }
 
 
