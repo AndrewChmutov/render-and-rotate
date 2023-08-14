@@ -1,5 +1,7 @@
 #include "screen.hpp"
 #include "shape3d.hpp"
+#include <SDL_render.h>
+#include <numeric>
 
 
 Screen::Screen(int width, int height) {
@@ -47,7 +49,17 @@ void Screen::putPixel(double x, double y, uint8_t r, uint8_t g, uint8_t b, uint8
 void Screen::putLine(double x1, double y1, double x2, double y2,
                         uint8_t r, uint8_t g, uint8_t b, uint8_t opacity) {
     SDL_SetRenderDrawColor(renderer, r, g, b, opacity);
-    SDL_RenderDrawLineF(renderer, x1, y1, x2, y2);
+    // SDL_RenderDrawLineF(renderer, x1, y1, x2, y2);
+
+    double x = x2 - x1;
+    double y = y2 - y1;
+
+    double length = std::sqrt(x*x + y*y);
+    double angle = std::atan2(y, x);
+
+    for (double i = 0.0; i < length; i++) {
+        SDL_RenderDrawPointF(renderer, x1 + cos(angle) * i, y1 + sin(angle) * i);
+    }
 }
 
 
