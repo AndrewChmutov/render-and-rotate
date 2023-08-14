@@ -17,7 +17,7 @@ int main() {
     // Main application loop
     while (true) {
         screen.putBackground();
-        cube.rotate(0.01, 0.03, 0.05);
+        cube.rotate(0.01, 0.01, 0.01);
         screen.putFigure(cube);
         screen.show();
         screen.clear();

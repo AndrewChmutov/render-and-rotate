@@ -20,13 +20,15 @@ Cube::Cube(double x, double y, double z, double size) {
     connections.push_back(std::make_pair(0, 1));
     connections.push_back(std::make_pair(0, 2));
     connections.push_back(std::make_pair(0, 4));
-    // connections.push_back(std::make_pair(0, 1));
-    // connections.push_back(std::make_pair(0, 1));
-    // connections.push_back(std::make_pair(0, 1));
-    // connections.push_back(std::make_pair(0, 1));
-    // connections.push_back(std::make_pair(0, 1));
-    // connections.push_back(std::make_pair(0, 1));
+    connections.push_back(std::make_pair(2, 3));
+    connections.push_back(std::make_pair(4, 5));
+    connections.push_back(std::make_pair(7, 3));
+    connections.push_back(std::make_pair(7, 5));
     connections.push_back(std::make_pair(7, 6));
+    connections.push_back(std::make_pair(4, 6));
+    connections.push_back(std::make_pair(1, 3));
+    connections.push_back(std::make_pair(1, 5));
+    connections.push_back(std::make_pair(2, 6));
 }
 
 
