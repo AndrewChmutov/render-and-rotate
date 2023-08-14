@@ -17,6 +17,7 @@ int main() {
     // Main application loop
     while (true) {
         screen.putBackground();
+        cube.rotate(0.01, 0.03, 0.05);
         screen.putFigure(cube);
         screen.show();
         screen.clear();
@@ -24,7 +25,7 @@ int main() {
         if (screen.input() == SDL_QUIT)
             break;
 
-        SDL_Delay(10);
+        SDL_Delay(20);
     }
 
     return 0;

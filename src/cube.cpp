@@ -30,4 +30,15 @@ Cube::Cube(double x, double y, double z, double size) {
 }
 
 
-void Cube::rotate(double x_radian, double y_radian, double z_radian) {}
+void Cube::rotate(double x_radian, double y_radian, double z_radian) 
+{
+    for (vec3& vertex : vertices) {
+        vertex.x -= centroid.x;
+        vertex.y -= centroid.y;
+        vertex.z -= centroid.z;
+        rotateVector(vertex, x_radian, y_radian, z_radian);
+        vertex.x += centroid.x;
+        vertex.y += centroid.y;
+        vertex.z += centroid.z;
+    }
+}
