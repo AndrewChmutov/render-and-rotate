@@ -36,7 +36,10 @@ SDL_EventType Screen::input() {
 
 
 void Screen::putBackground(uint8_t r, uint8_t g, uint8_t b, uint8_t opacity) {
+    // Color for background
     SDL_SetRenderDrawColor(renderer, r, g, b, opacity);
+
+    // Render background
     SDL_RenderClear(renderer);
 }
 
@@ -48,15 +51,23 @@ void Screen::putPixel(double x, double y, uint8_t r, uint8_t g, uint8_t b, uint8
 
 void Screen::putLine(double x1, double y1, double x2, double y2,
                         uint8_t r, uint8_t g, uint8_t b, uint8_t opacity) {
+    // Set color
     SDL_SetRenderDrawColor(renderer, r, g, b, opacity);
+
+    // SDL function for drawing lines, performs less accurately
     // SDL_RenderDrawLineF(renderer, x1, y1, x2, y2);
 
+    // Get legs of right triangle
     double x = x2 - x1;
     double y = y2 - y1;
 
+    // Get hypotenuse
     double length = std::sqrt(x*x + y*y);
+    // To avoid division by 0
     double angle = std::atan2(y, x);
 
+    // For each pixel of hypotenuse,
+    // calculate (x,y) coordinates
     for (double i = 0.0; i < length; i++) {
         SDL_RenderDrawPointF(renderer, x1 + cos(angle) * i, y1 + sin(angle) * i);
     }

@@ -31,11 +31,3 @@ const std::vector<vec3>& Shape3D::getVertices() const {
 const std::vector<std::pair<int, int>>& Shape3D::getConnections() const {
     return connections;
 }
-// void Shape3D::setPixels(Screen& screen) const {
-//     // Put vertices
-//     for (const vec3& vector3 : vertices) {
-//         screen.putPixel(vector3.x, vector3.y);
-//     }
-
-//     // Put connections TO-DO
-// }

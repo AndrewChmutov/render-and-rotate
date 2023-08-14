@@ -15,6 +15,7 @@
 #include "shape3d.hpp"
 
 class Screen {
+    // SDL pointers
     SDL_Window* window;
     SDL_Renderer* renderer;
 
@@ -35,10 +36,12 @@ public:
                     uint8_t r = 255, uint8_t g = 255, 
                     uint8_t b = 255, uint8_t opacity = 255);
 
+    // Draw line from one point to another
     void putLine(double x1, double y1, double x2, double y2,
                     uint8_t r = 255, uint8_t g = 255, 
                     uint8_t b = 255, uint8_t opacity = 255);
 
+    // Draw figure
     void putFigure(Shape3D& figure,
                     uint8_t r = 255, uint8_t g = 255, 
                     uint8_t b = 255, uint8_t opacity = 255);
