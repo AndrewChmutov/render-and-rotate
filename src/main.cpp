@@ -1,33 +1,49 @@
 #include <SDL2/SDL_events.h>
 #include <SDL2/SDL_render.h>
+#include <SDL2/SDL_scancode.h>
 #include <SDL2/SDL_video.h>
 #include <iostream>
 #include <SDL2/SDL.h>
+#include <stdexcept>
 
-int main() {
-    // For visual output
+
+class Screen {
     SDL_Window* window;
     SDL_Renderer* renderer;
 
-    // Setup window and renderer
-    SDL_CreateWindowAndRenderer(800, 800, SDL_WINDOW_OPENGL, &window, &renderer);
-    SDL_SetWindowTitle(window, "Sample render");
+public:
+    Screen(int width, int height) {
+        // Initialize video subsystem
+        if (SDL_Init(SDL_INIT_VIDEO) < 0)
+            throw std::runtime_error("Video initialization failed");
 
-    // Make output bigger
-    SDL_RenderSetScale(renderer, 2, 2);
+        // Setup window and renderer
+        SDL_CreateWindowAndRenderer(width, height, SDL_WINDOW_OPENGL, &window, &renderer);
+        SDL_SetWindowTitle(window, "Sample render");
 
-    // Main application loop
-    bool isRunning = true;
-    while (isRunning) {
+        // Make output bigger
+        SDL_RenderSetScale(renderer, 2, 2);
+    }
+
+    
+    // Handle input
+    SDL_EventType input() {
         SDL_Event event;
 
         // Handle events
         while (SDL_PollEvent(&event)) {
-            // Close window button
-            if (event.type == SDL_QUIT)
-                isRunning = false;
+            // Close window button or ESC key
+            if (event.type == SDL_QUIT ||
+                (event.type == SDL_KEYDOWN && event.key.keysym.scancode == SDL_SCANCODE_ESCAPE))
+                return SDL_QUIT;
         }
 
+        // Default case
+        return SDL_USEREVENT;
+    }
+
+
+    void show() {
         // Output
         // Black background
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
@@ -38,10 +54,30 @@ int main() {
     }
 
 
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
+    ~Screen() {
+        SDL_DestroyRenderer(renderer);
+        SDL_DestroyWindow(window);
 
-    SDL_Quit();
+        SDL_Quit();
+    }
+};
+
+constexpr int g_width = 800;
+constexpr int g_height = 800;
+
+
+int main() {
+    Screen screen(g_width, g_height);
+
+    // Main application loop
+    while (true) {
+        screen.show();
+
+        if (screen.input() == SDL_QUIT)
+            break;
+
+        SDL_Delay(10);
+    }
 
     return 0;
 }
