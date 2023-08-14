@@ -7,7 +7,6 @@
 
 // User build libraries
 #include "structures.hpp"
-#include "screen.hpp"
 
 class Shape3D {
 protected:
@@ -20,12 +19,16 @@ protected:
 
     // In theory, this is not obligatory, but for this example it can be
     // Connect all the vertivces with lines according to the vector of connections
-    virtual void connect(Screen& screen) const = 0;
+    // virtual void connect(Screen& screen) const = 0;
 
 public:
     // this may vary, depending on which point we are rotating around
     virtual void rotate(double x_radian, double y_radian, double z_radian) = 0;
 
+    const std::vector<vec3>& getVertices() const;
+
+    const std::vector<std::pair<int, int>>& getConnections() const;
+
     // Scatter vertices and connect
-    void setPixels(Screen& screen) const;
+    // void setPixels(Screen& screen) const;
 };
