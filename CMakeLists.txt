@@ -9,5 +9,5 @@ find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
-add_executable(RenderRotate src/main.cpp src/screen.cpp src/shape3d.cpp)
+add_executable(RenderRotate src/main.cpp src/screen.cpp src/shape3d.cpp src/cube.cpp)
 target_link_libraries(RenderRotate ${SDL2_LIBRARIES})
