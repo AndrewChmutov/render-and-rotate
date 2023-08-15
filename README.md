@@ -7,7 +7,7 @@ This project presents a 3D simulation using SDL2 where cubes rotate with two rin
 
 
 # Demonstration
-![](https://github.com/AndrewChmutov/render-and-rotate/example.gif)
+![](example.gif)
 
 
 # Installation
