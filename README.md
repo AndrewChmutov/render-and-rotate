@@ -6,11 +6,11 @@ This project presents a 3D simulation using SDL2 where cubes rotate with two rin
 - SDL2
 
 
-# Demonstration
+## Demonstration
 ![](example.gif)
 
 
-# Installation
+## Installation
 Clone the repo:
 ```
 git clone https://github.com/AndrewChmutov/render-and-rotate
@@ -33,7 +33,7 @@ cmake --build build
 ```
 
 
-# Usage
+## Usage
 Run the program:
 ```
 ./build/RenderRotate
